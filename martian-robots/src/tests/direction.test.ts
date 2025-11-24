@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { turnLeft, turnRight } from "./direction";
+import { turnLeft, turnRight } from "../services/direction";
 
 describe("Direction Turns", () => {
   it("turnLeft rotates correctly", () => {

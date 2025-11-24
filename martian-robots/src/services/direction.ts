@@ -1,17 +1,17 @@
-import type  { Direction } from "../models/types";
+import type { Direction } from "../models/types";
 
 const leftTurn: Record<Direction, Direction> = {
   N: "W",
   W: "S",
   S: "E",
-  E: "N"
+  E: "N",
 };
 
 const rightTurn: Record<Direction, Direction> = {
   N: "E",
   E: "S",
   S: "W",
-  W: "N"
+  W: "N",
 };
 
 export const turnLeft = (d: Direction): Direction => leftTurn[d];
