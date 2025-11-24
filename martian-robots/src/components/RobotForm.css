@@ -1,0 +1,75 @@
+.robot-form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+.robot-form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.robot-form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.robot-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  resize: vertical;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.robot-textarea:focus {
+  border: 1px solid #007bff;
+}
+
+.robot-button-group {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.robot-btn {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.robot-btn-primary {
+  background: #007bff;
+  color: white;
+}
+
+.robot-btn-primary:hover {
+  background: #005fcc;
+}
+
+.robot-btn-secondary {
+  background: #f1f1f1;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.robot-btn-secondary:hover {
+  background: #e2e2e2;
+}
