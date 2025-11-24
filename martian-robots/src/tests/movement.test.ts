@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getNextPosition } from "./movement";
+import { getNextPosition } from "../services/movement";
 
 describe("Forward Movement", () => {
   it("moves forward in correct direction", () => {

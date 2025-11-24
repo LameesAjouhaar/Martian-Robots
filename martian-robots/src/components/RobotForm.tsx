@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./RobotForm.css";
 
 interface RobotFormProps {
   onRun: (input: string) => void;
@@ -14,31 +15,35 @@ export const RobotForm = ({ onRun, onFillSample }: RobotFormProps) => {
   };
 
   return (
-    <div style={{ maxWidth: 500, margin: "0 auto" }}>
-      <h2>Martian Robots</h2>
+    <div className="robot-form-container">
+      <h2 className="robot-form-title">Martian Robots</h2>
 
       <form onSubmit={handleSubmit}>
+        <label className="robot-form-label">Input Commands</label>
+
         <textarea
           rows={10}
-          style={{ width: "100%" }}
-          placeholder="Enter input..."
+          className="robot-textarea"
+          placeholder="Enter robot instructions..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <button type="submit" style={{ marginTop: 10 }}>
-          Run
-        </button>
-
-        {onFillSample && (
-          <button
-            type="button"
-            style={{ marginLeft: 10, marginTop: 10 }}
-            onClick={onFillSample}
-          >
-            Load Sample Input
+        <div className="robot-button-group">
+          <button type="submit" className="robot-btn robot-btn-primary">
+            Run
           </button>
-        )}
+
+          {onFillSample && (
+            <button
+              type="button"
+              className="robot-btn robot-btn-secondary"
+              onClick={onFillSample}
+            >
+              Load Sample
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

@@ -23,7 +23,7 @@ function App() {
         direction: dir as any,
       };
 
-      const finalState = processInstructions(grid, robot, instructions);
+      const finalState = processInstructions(robot, grid, instructions);
 
       const line = `${finalState.x} ${finalState.y} ${finalState.direction}${
         finalState.lost ? " LOST" : ""
