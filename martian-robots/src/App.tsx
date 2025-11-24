@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { RobotForm } from "./components/RobotForm";
+import type { Grid, Robot } from "./models/types";
+import { processInstructions } from "./services/robotRunner";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [output, setOutput] = useState("");
+
+  const runInput = (input: string) => {
+    const lines = input.trim().split("\n");
+    const [maxX, maxY] = lines[0].split(" ").map(Number);
+
+    const grid: Grid = { maxX, maxY };
+    const results: string[] = [];
+
+    for (let i = 1; i < lines.length; i += 2) {
+      const [x, y, dir] = lines[i].split(" ");
+      const instructions = lines[i + 1];
+
+      let robot: Robot = {
+        x: Number(x),
+        y: Number(y),
+        direction: dir as any,
+      };
+
+      const finalState = processInstructions(grid, robot, instructions);
+
+      const line = `${finalState.x} ${finalState.y} ${finalState.direction}${
+        finalState.lost ? " LOST" : ""
+      }`;
+
+      results.push(line);
+    }
+
+    setOutput(results.join("\n"));
+  };
+
+  const fillSample = () => {
+    const sample = `5 3
+1 1 E
+RFRFRFRF
+3 2 N
+FRRFLLFFRRFLL
+0 3 W
+LLFFFLFLFL`;
+    setOutput("");
+    runInput(sample);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div style={{ padding: 20 }}>
+      <RobotForm onRun={runInput} onFillSample={fillSample} />
+      {output && (
+        <pre
+          style={{
+            marginTop: 20,
+            padding: 10,
+            background: "#f4f4f4",
+            borderRadius: 4,
+          }}
+        >
+          {output}
+        </pre>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
